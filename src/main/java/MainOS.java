@@ -40,6 +40,10 @@ public class MainOS {
                 ProcessService ps = new ProcessService();
                 ps.listProcesses();
                 break;
+            case 7:
+                ShellService sh = new ShellService();
+                sh.startShell();
+                break;
             case 0:
                 break;
 
