@@ -12,6 +12,8 @@ public class MainOS {
                 "4- Belirli bir klasördeki dosyaları listele\n" +
                 "5- Belirli bir dizindeki ve altında tüm dosyaları listele\n" +
                 "6- Çalışan process listesini göster\n" +
+                "7- Shell'de komut çalıştır\n" +
+                "8- İstenen dizinde anahtar kelimeyi içeren dosyaları ara\n" +
                 "0- Çıkış");
         secim = sc.nextInt();
         sc.nextLine();
@@ -44,6 +46,14 @@ public class MainOS {
                 ShellService sh = new ShellService();
                 sh.startShell();
                 break;
+                case 8:
+                    System.out.println("Dosya dizini giriniz: ");
+                    String path = sc.nextLine();
+                    System.out.println("Anahtar kelimeyi giriniz: ");
+                    String keyword = sc.nextLine();
+                    FileService fs1 = new FileService();
+                    fs1.searchFiles(path, keyword);
+                    break;
             case 0:
                 break;
 

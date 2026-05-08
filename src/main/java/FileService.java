@@ -112,4 +112,33 @@ public class FileService {
             System.out.println("PATH bulunamadı");
         }
     }
+    public static void searchFiles(String path, String keyword){
+        File f = new File(path);
+        if(f.exists()){
+            if(f.isDirectory()){
+                File[] files = f.listFiles();
+                if(files==null){
+                    System.out.println("Klasör okunamadı.");
+                    return;
+                }
+                for(File f1:files){
+                    if(f1.isFile()){
+
+                        if(f1.getName().toLowerCase().contains(keyword.toLowerCase())){
+                            System.out.println("[BULUNDU] " + f1.getAbsolutePath());
+                        }
+                    }
+                    else if(f1.isDirectory()){
+                        searchFiles(f1.getAbsolutePath(), keyword);
+                    }
+                }
+            }
+            else{
+                System.out.println("Girilen path bir klasör değil.");
+            }
+        }
+        else{
+            System.out.println("PATH bulunamadı");
+        }
+    }
 }
