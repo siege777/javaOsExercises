@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class ProcessService {
     String os = System.getProperty("os.name");
@@ -32,5 +33,25 @@ public class ProcessService {
             System.out.println("Process başlatılırken hata oluştu.");
         }
     }
+    }
+    public void killProcess(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("PID giriniz: ");
+        String pid = sc.nextLine();
+
+        Runtime rt = Runtime.getRuntime();
+
+        if (os.contains("Windows")) {
+            try{rt.exec("taskkill /PID " + pid + " /F");}
+            catch (IOException e){
+                System.out.println("Process sonlandırılırken hata oluştu");}
+        }
+        else if (os.contains("Linux") || os.contains("Mac")) {
+            try{rt.exec("kill -9 " + pid);}
+            catch (IOException e){
+                System.out.println("Process sonlandırılırken hata oluştu");
+            }
+        }
     }
 }
